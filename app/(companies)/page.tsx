@@ -1,9 +1,20 @@
-import Image from "next/image";
+import React from "react";
+import CompanyCard from "../components/CompanyCard";
 
-export default function Home() {
+function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      Societes
-    </main>
+    <div className="grid grid-cols-4 md:grid-cols-1 gap-4">
+      <CompanyCard />
+      <CompanyCard />
+      <CompanyCard />
+      <CompanyCard />
+      <CompanyCard />
+      <CompanyCard />
+      <CompanyCard />
+      <CompanyCard />
+      <CompanyCard />
+    </div>
   );
 }
+
+export default Home;
