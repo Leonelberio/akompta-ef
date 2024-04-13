@@ -22,7 +22,7 @@ export async function GET(
     if (!balance) {
       return NextResponse.json({ error: "Balance not found" }, { status: 404 });
     }
-    return NextResponse.json({ balance }, { status: 200 });
+    return NextResponse.json(balance , { status: 200 });
   } catch (error: any) {
     console.log(error);
     return NextResponse.json({ error: error.message }, { status: 500 });

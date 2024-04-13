@@ -19,7 +19,7 @@ export async function GET(
         endDate: true,
       },
     });
-    return NextResponse.json({ financialYears }, { status: 200 });
+    return NextResponse.json( financialYears , { status: 200 });
   } catch (error: any) {
     console.log(error);
     return NextResponse.json({ error: error.message }, { status: 500 });

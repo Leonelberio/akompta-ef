@@ -10,10 +10,10 @@ export async function GET(
   try {
     await connectToDb();
     const user = await prisma.user.findUnique({
-      where: { id: parseInt(params.userId) }, // Ensure that userId is correctly typed as an integer
+      where: { id: params.userId}, // Ensure that userId is correctly typed as an integer
       select: { id: true, email: true }, // Only select non-sensitive data
     });
-    return NextResponse.json({ user }, { status: 200 });
+    return NextResponse.json( user , { status: 200 });
   } catch (error: any) {
     console.log(error);
     return NextResponse.json({ error: error.message }, { status: 500 });
@@ -36,7 +36,7 @@ export async function PUT(
     }
     await connectToDb();
     const updatedUser = await prisma.user.update({
-      where: { id: parseInt(params.userId) },
+      where: { id:params.userId },
       data: { email },
     });
     return NextResponse.json({ user: updatedUser }, { status: 200 });
@@ -55,7 +55,7 @@ export async function DELETE(
   try {
     await connectToDb();
     const deletedUser = await prisma.user.delete({
-      where: { id: parseInt(params.userId) },
+      where: { id: params.userId },
     });
     return NextResponse.json(
       { message: "User successfully deleted" },

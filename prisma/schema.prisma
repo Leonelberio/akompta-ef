@@ -70,6 +70,7 @@ model Company {
 
 model FinancialYear {
   id        Int      @id @default(autoincrement())
+  year      Int
   startDate DateTime
   endDate   DateTime
   companyId Int

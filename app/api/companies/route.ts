@@ -14,7 +14,7 @@ export async function GET() {
         createdAt: true,
       },
     });
-    return NextResponse.json({ companies }, { status: 200 });
+    return NextResponse.json(companies , { status: 200 });
   } catch (error: any) {
     console.log(error);
     return NextResponse.json({ error: error.message }, { status: 500 });

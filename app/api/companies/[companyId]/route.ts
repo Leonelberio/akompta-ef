@@ -21,7 +21,7 @@ export async function GET(
     if (!company) {
       return NextResponse.json({ error: "Company not found" }, { status: 404 });
     }
-    return NextResponse.json({ company }, { status: 200 });
+    return NextResponse.json( company , { status: 200 });
   } catch (error: any) {
     console.log(error);
     return NextResponse.json({ error: error.message }, { status: 500 });
