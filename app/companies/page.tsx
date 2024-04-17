@@ -20,8 +20,6 @@ async function fetchCompanies() {
 }
 
 async function CompaniesPage() {
-
-
   const companies = await fetchCompanies();
 
   return (
@@ -29,9 +27,7 @@ async function CompaniesPage() {
       <div className="p-8">
         <h1 className="text-2xl font-bold">Societes</h1>
       </div>
-      <div>
-        <Companies companies={companies}/>
-      </div>
+      <div>{/* <Companies companies={companies}/> */}</div>
     </div>
   );
 }
