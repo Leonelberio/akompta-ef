@@ -3,14 +3,17 @@
 import React from "react";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import FinancialYears from "@/app/components/FinancialYears";
+import FinancialYears from "@/components/financial-years";
 
 async function fetchFinancialYears(params) {
   // const res = await fetch("https://jsonplaceholder.typicode.com/users");
 
-  const res = await fetch(process.env.BASE_URL + "/api/companies/"+params+"/financial-years", {
-    cache: "no-store",
-  });
+  const res = await fetch(
+    process.env.BASE_URL + "/api/companies/" + params + "/financial-years",
+    {
+      cache: "no-store",
+    }
+  );
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");
@@ -19,9 +22,11 @@ async function fetchFinancialYears(params) {
   return res.json();
 }
 
-async function FinancialYearsPage({params}:{params: {companyId: string}}) {
-
-
+async function FinancialYearsPage({
+  params,
+}: {
+  params: { companyId: string };
+}) {
   const financialyears = await fetchFinancialYears(params.companyId);
 
   return (
@@ -30,7 +35,7 @@ async function FinancialYearsPage({params}:{params: {companyId: string}}) {
         <h1 className="text-2xl font-bold">Exercices</h1>
       </div>
       <div>
-        <FinancialYears financialyears={financialyears}/>
+        <FinancialYears financialyears={financialyears} />
       </div>
     </div>
   );
