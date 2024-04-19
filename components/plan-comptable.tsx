@@ -40,10 +40,10 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-import { data } from "../app/(application)/contacts/data-table";
-import { columns } from "../app/(application)/contacts/columns";
+import { data } from "../app/(application)/plan-comptable/data-table";
+import { columns } from "../app/(application)/plan-comptable/columns";
 
-export default function ContactPage() {
+export default function PlanComptablePage() {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -78,10 +78,15 @@ export default function ContactPage() {
       </div>
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter emails..."
-          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+          placeholder="Rechercher un numero de compte..."
+          value={
+            (table.getColumn("numero_de_compte")?.getFilterValue() as number) ??
+            ""
+          }
           onChange={(event) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
+            table
+              .getColumn("numero_de_compte")
+              ?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
@@ -155,7 +160,7 @@ export default function ContactPage() {
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No results.
+                  Aucun resultat.
                 </TableCell>
               </TableRow>
             )}
@@ -165,7 +170,7 @@ export default function ContactPage() {
       <div className="flex items-center justify-end space-x-2 py-4">
         <div className="flex-1 text-sm text-muted-foreground">
           {table.getFilteredSelectedRowModel().rows.length} of{" "}
-          {table.getFilteredRowModel().rows.length} row(s) selected.
+          {table.getFilteredRowModel().rows.length} lignes(s) selected.
         </div>
         <div className="space-x-2">
           <Button

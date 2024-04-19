@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 "use client";
 
 import * as React from "react";
@@ -39,32 +41,25 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Payment } from "./data-table";
+import { Comptes } from "./data-table";
 
-export const columns: ColumnDef<Payment>[] = [
+export const columns: ColumnDef<Comptes>[] = [
   {
     accessorKey: "numero_de_compte",
     header: () => <div className="text-right">Numero de compte</div>,
     cell: ({ row }) => {
-      const number = parseFloat(row.getValue("numero_de_compte"));
+      const number = row.getValue("numero_de_compte");
 
       return <div className="text-right font-medium">{number}</div>;
     },
   },
   {
     accessorKey: "libelles",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Libelles
-          <CaretSortIcon className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-    cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
+    header: () => <div className="text-right">Libelles</div>,
+
+    cell: ({ row }) => (
+      <div className="text-right">{row.getValue("libelles")}</div>
+    ),
   },
   {
     id: "actions",

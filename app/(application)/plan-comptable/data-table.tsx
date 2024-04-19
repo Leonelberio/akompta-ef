@@ -1,39 +1,33 @@
-export const data: Payment[] = [
-    {
-        id: "m5gr84i9",
-        amount: 316,
-        status: "success",
-        email: "ken99@yahoo.com",
-    },
-    {
-        id: "3u1reuv4",
-        amount: 242,
-        status: "success",
-        email: "Abe45@gmail.com",
-    },
-    {
-        id: "derv1ws0",
-        amount: 837,
-        status: "processing",
-        email: "Monserrat44@gmail.com",
-    },
-    {
-        id: "5kma53ae",
-        amount: 874,
-        status: "success",
-        email: "Silas22@gmail.com",
-    },
-    {
-        id: "bhqecj4p",
-        amount: 721,
-        status: "failed",
-        email: "carmella@hotmail.com",
-    },
+export const data: Comptes[] = [
+  {
+    id: "m5gr84i9",
+    numero_de_compte: 316,
+    libelles: "Libelles 1",
+  },
+  {
+    id: "3u1reuv4",
+    numero_de_compte: 242,
+    libelles: "Libelles 2",
+  },
+  {
+    id: "derv1ws0",
+    numero_de_compte: 837,
+    libelles: "Libelles 3",
+  },
+  {
+    id: "5kma53ae",
+    numero_de_compte: 874,
+    libelles: "Libelles 4",
+  },
+  {
+    id: "bhqecj4p",
+    numero_de_compte: 721,
+    libelles: "Libelles 5",
+  },
 ];
 
-export type Payment = {
-    id: string;
-    amount: number;
-    status: "pending" | "processing" | "success" | "failed";
-    email: string;
+export type Comptes = {
+  id: string;
+  numero_de_compte: number;
+  libelles: string;
 };
