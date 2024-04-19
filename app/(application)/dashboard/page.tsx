@@ -1,4 +1,3 @@
-import React from "react";
 import DashboardUser from "@/components/dashboard-user";
 
 const page = () => {
