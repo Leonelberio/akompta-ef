@@ -10,7 +10,7 @@ export async function GET(
   try {
     await connectToDb();
     const financialYear = await prisma.financialYear.findUnique({
-      where: { id: parseInt(params.financialYearId) },
+      where: { id: params.financialYearId },
       select: {
         id: true,
         //@ts-ignore
@@ -25,7 +25,7 @@ export async function GET(
         { status: 404 }
       );
     }
-    return NextResponse.json(financialYear , { status: 200 });
+    return NextResponse.json(financialYear, { status: 200 });
   } catch (error: any) {
     console.log(error);
     return NextResponse.json({ error: error.message }, { status: 500 });
@@ -42,7 +42,7 @@ export async function PUT(
     const { year, startDate, endDate } = await request.json();
     await connectToDb();
     const updatedFinancialYear = await prisma.financialYear.update({
-      where: { id: parseInt(params.financialYearId) },
+      where: { id: params.financialYearId },
       data: {
         //@ts-ignore
         year,
@@ -69,7 +69,7 @@ export async function DELETE(
   try {
     await connectToDb();
     const deletedFinancialYear = await prisma.financialYear.delete({
-      where: { id: parseInt(params.financialYearId) },
+      where: { id: params.financialYearId },
     });
     return NextResponse.json(
       { message: "Financial year successfully deleted" },

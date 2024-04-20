@@ -11,6 +11,7 @@
     "generate-data": "ts-node --project tsconfig.scripts.json scripts/generateData.mjs"
   },
   "dependencies": {
+    "@auth/prisma-adapter": "^2.0.0",
     "@next-auth/prisma-adapter": "^0.4.4-canary.81",
     "@prisma/client": "^5.12.1",
     "@radix-ui/react-avatar": "^1.0.4",

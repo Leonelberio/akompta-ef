@@ -1,3 +1,6 @@
+//@ts-nocheck
+"use client";
+
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
@@ -10,6 +13,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { signOut } from "next-auth/react";
 
 export default function SignupForm() {
   return (

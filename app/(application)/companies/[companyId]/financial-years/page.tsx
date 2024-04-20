@@ -6,13 +6,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import FinancialYears from "@/components/financial-years";
 
 async function fetchFinancialYears(params) {
-  // const res = await fetch("https://jsonplaceholder.typicode.com/users");
-
   const res = await fetch(
-    process.env.BASE_URL + "/api/companies/" + params + "/financial-years",
-    {
-      cache: "no-store",
-    }
+    process.env.BASE_URL + "/api/companies/" + params + "/financial-years"
   );
 
   if (!res.ok) {
@@ -32,7 +27,7 @@ async function FinancialYearsPage({
   return (
     <div className="container">
       <div className="p-8">
-        <h1 className="text-2xl font-bold">Exercices</h1>
+        <h1 className="text-2xl font-bold">Exercices {params.companyId}</h1>
       </div>
       <div>
         <FinancialYears financialyears={financialyears} />

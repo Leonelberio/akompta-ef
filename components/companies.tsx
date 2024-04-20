@@ -13,13 +13,17 @@ interface CompaniesProps {
 }
 interface Props {
   companies: CompaniesProps;
+  params: { companyId: string };
 }
 
-const Companies = ({ companies }: Props) => {
+const Companies = ({ companies, params }: Props) => {
   return (
     <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 py-10">
       {companies.map((company) => (
-        <Link key={company.id} href={"/financial-years"}>
+        <Link
+          key={company.id}
+          href={`/companies/${company.id}/financial-years`}
+        >
           <Card className="space-y-4">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
               <Image src={"vercel.svg"} width={200} height={200} />

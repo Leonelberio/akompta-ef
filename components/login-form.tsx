@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
@@ -10,8 +12,20 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
+  // const { data, status } = useSession();
+  const router = useRouter();
+
+  // if (status === "loading") {
+  //   return <div>Chargement...</div>;
+  // }
+  // if (status === "authenticated") {
+  //   router.push("/dashboard");
+  // }
+
   return (
     <Card className="mx-auto max-w-sm">
       <CardHeader>

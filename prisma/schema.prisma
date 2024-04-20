@@ -58,9 +58,9 @@ model VerificationToken {
 }
 
 model Company {
-  id             Int             @id @default(autoincrement())
+  id             String          @id @default(cuid())
   ownerId        String
-  user           User            @relation(fields: [ownerId], references: [id])
+  user           User            @relation(fields: [ownerId], references: [id], onDelete: Cascade)
   name           String
   description    String?
   financialYears FinancialYear[]
@@ -69,21 +69,21 @@ model Company {
 }
 
 model FinancialYear {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(cuid())
   year      Int
-  startDate DateTime
-  endDate   DateTime
-  companyId Int
-  company   Company  @relation(fields: [companyId], references: [id])
+  startDate DateTime @default(now())
+  endDate   DateTime @default(now())
+  companyId String
+  company   Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
   balance   Balance? // Relation is optional to allow for financial years without a balance
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Balance {
-  id                  Int                  @id @default(autoincrement())
-  financialYearId     Int                  @unique
-  financialYear       FinancialYear        @relation(fields: [financialYearId], references: [id])
+  id                  String               @id @default(cuid())
+  financialYearId     String               @unique
+  financialYear       FinancialYear        @relation(fields: [financialYearId], references: [id], onDelete: Cascade)
   data                Json // The CSV imported data will be stored as JSON
   financialStatements FinancialStatement[]
   createdAt           DateTime             @default(now())
@@ -91,9 +91,9 @@ model Balance {
 }
 
 model FinancialStatement {
-  id        Int      @id @default(autoincrement())
-  balanceId Int
-  balance   Balance  @relation(fields: [balanceId], references: [id])
+  id        String   @id @default(cuid())
+  balanceId String
+  balance   Balance  @relation(fields: [balanceId], references: [id], onDelete: Cascade)
   type      String // Par exemple: Bilan, TFT, etc.
   content   Json // Les données structurées pour les états financiers
   createdAt DateTime @default(now())

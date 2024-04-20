@@ -1,4 +1,5 @@
 //@ts-nocheck
+"use client";
 
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/toggle-button";
@@ -37,6 +38,7 @@ import {
   Users,
 } from "lucide-react";
 import { SidebarRoutes } from "./sidebar-routes";
+import { signOut } from "next-auth/react";
 
 const PageHeader = () => {
   return (
@@ -95,7 +97,7 @@ const PageHeader = () => {
           <DropdownMenuItem>Settings</DropdownMenuItem>
           <DropdownMenuItem>Support</DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>Logout</DropdownMenuItem>
+          <DropdownMenuItem onClick={signOut}>Logout</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
       <ModeToggle />

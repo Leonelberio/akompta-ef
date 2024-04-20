@@ -1,11 +1,11 @@
 import DashboardUser from "@/components/dashboard-user";
 
 const page = () => {
-    return (
-        <>
-            <DashboardUser />
-        </>
-    );
+  return (
+    <>
+      <DashboardUser />
+    </>
+  );
 };
 
 export default page;

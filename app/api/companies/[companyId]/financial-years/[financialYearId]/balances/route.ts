@@ -11,7 +11,7 @@ export async function GET(
     await connectToDb();
     const balance = await prisma.balance.findUnique({
       where: {
-        financialYearId: parseInt(params.financialYearId),
+        financialYearId: params.financialYearId,
       },
       select: {
         id: true,
@@ -22,7 +22,7 @@ export async function GET(
     if (!balance) {
       return NextResponse.json({ error: "Balance not found" }, { status: 404 });
     }
-    return NextResponse.json(balance , { status: 200 });
+    return NextResponse.json(balance, { status: 200 });
   } catch (error: any) {
     console.log(error);
     return NextResponse.json({ error: error.message }, { status: 500 });
@@ -46,7 +46,7 @@ export async function POST(
     await connectToDb();
     const newBalance = await prisma.balance.create({
       data: {
-        financialYearId: parseInt(params.financialYearId),
+        financialYearId: params.financialYearId,
         data, // Assuming 'data' is stored as JSON or similar format
       },
     });

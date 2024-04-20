@@ -10,7 +10,7 @@ export async function GET(
   try {
     await connectToDb();
     const financialYears = await prisma.financialYear.findMany({
-      where: { companyId: parseInt(params.companyId) },
+      where: { companyId: params.companyId },
       select: {
         id: true,
         //@ts-ignore
@@ -19,7 +19,7 @@ export async function GET(
         endDate: true,
       },
     });
-    return NextResponse.json( financialYears , { status: 200 });
+    return NextResponse.json(financialYears, { status: 200 });
   } catch (error: any) {
     console.log(error);
     return NextResponse.json({ error: error.message }, { status: 500 });
@@ -37,7 +37,7 @@ export async function POST(
     await connectToDb();
     const newFinancialYear = await prisma.financialYear.create({
       data: {
-        companyId: parseInt(params.companyId),
+        companyId: params.companyId,
         //@ts-ignore
         year,
         startDate: new Date(startDate),

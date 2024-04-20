@@ -10,7 +10,7 @@ export async function GET(
   try {
     await connectToDb();
     const company = await prisma.company.findUnique({
-      where: { id: parseInt(params.companyId) },
+      where: { id: params.companyId },
       select: {
         id: true,
         name: true,
@@ -21,7 +21,7 @@ export async function GET(
     if (!company) {
       return NextResponse.json({ error: "Company not found" }, { status: 404 });
     }
-    return NextResponse.json( company , { status: 200 });
+    return NextResponse.json(company, { status: 200 });
   } catch (error: any) {
     console.log(error);
     return NextResponse.json({ error: error.message }, { status: 500 });
@@ -38,7 +38,7 @@ export async function PUT(
     const { name, description } = await request.json();
     await connectToDb();
     const updatedCompany = await prisma.company.update({
-      where: { id: parseInt(params.companyId) },
+      where: { id: params.companyId },
       data: { name, description },
     });
     return NextResponse.json({ company: updatedCompany }, { status: 200 });
@@ -57,7 +57,7 @@ export async function DELETE(
   try {
     await connectToDb();
     const deletedCompany = await prisma.company.delete({
-      where: { id: parseInt(params.companyId) },
+      where: { id: params.companyId },
     });
     return NextResponse.json(
       { message: "Company successfully deleted" },

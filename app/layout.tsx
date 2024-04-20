@@ -3,9 +3,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
-import SessionWrapper from "@/components/session-wrapper";
-import Providers from "./providers";
+import { ThemeProvider } from "@/providers/theme-provider";
+import SessionProvider from "@/providers/session-provider";
+
+import { getServerSession } from "next-auth";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,19 +22,19 @@ export default function RootLayout({
 }>) {
   return (
     <>
-      <html lang="en" suppressHydrationWarning>
+      <html lang="fr" suppressHydrationWarning>
         <head />
         <body>
-          <Providers>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="system"
-              enableSystem
-              disableTransitionOnChange
-            >
-              {children}
-            </ThemeProvider>
-          </Providers>
+          {/* <SessionProvider session={session}> */}
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+          {/* </SessionProvider> */}
         </body>
       </html>
     </>
