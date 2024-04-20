@@ -1,11 +1,11 @@
 import PlanComptable from "@/components/plan-comptable";
 
 const page = () => {
-    return (
-        <>
-            <PlanComptable />
-        </>
-    );
+  return (
+    <>
+      <PlanComptable />
+    </>
+  );
 };
 
 export default page;

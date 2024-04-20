@@ -46,26 +46,27 @@ import { Comptes } from "./data-table";
 export const columns: ColumnDef<Comptes>[] = [
   {
     accessorKey: "numero_de_compte",
-    header: () => <div className="text-right">Numero de compte</div>,
+    header: () => <div className="text-center">Numero de compte</div>,
     cell: ({ row }) => {
       const number = row.getValue("numero_de_compte");
 
-      return <div className="text-right font-medium">{number}</div>;
+      return <div className="text-center font-medium">{number}</div>;
     },
+    size: 270,
   },
   {
     accessorKey: "libelles",
-    header: () => <div className="text-right">Libelles</div>,
+    header: () => <div className="text-left">Libelles</div>,
 
     cell: ({ row }) => (
-      <div className="text-right">{row.getValue("libelles")}</div>
+      <div className="text-left">{row.getValue("libelles")}</div>
     ),
   },
   {
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
-      const payment = row.original;
+      const compte = row.original;
 
       return (
         <DropdownMenu>
@@ -78,13 +79,12 @@ export const columns: ColumnDef<Comptes>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
+              onClick={() => navigator.clipboard.writeText(compte.libelles)}
             >
-              Copy payment ID
+              Copier le libellé{" "}
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+            <DropdownMenuItem>Voir le compte</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );

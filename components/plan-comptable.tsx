@@ -69,6 +69,11 @@ export default function PlanComptablePage() {
       columnVisibility,
       rowSelection,
     },
+    defaultColumn: {
+      size: 200, //starting column size
+      minSize: 50, //enforced during column resizing
+      maxSize: 500, //enforced during column resizing
+    },
   });
 
   return (
@@ -78,15 +83,12 @@ export default function PlanComptablePage() {
       </div>
       <div className="flex items-center py-4">
         <Input
-          placeholder="Rechercher un numero de compte..."
+          placeholder="Rechercher un libelle..."
           value={
-            (table.getColumn("numero_de_compte")?.getFilterValue() as number) ??
-            ""
+            (table.getColumn("libelles")?.getFilterValue() as string) ?? ""
           }
           onChange={(event) =>
-            table
-              .getColumn("numero_de_compte")
-              ?.setFilterValue(event.target.value)
+            table.getColumn("libelles")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
@@ -169,8 +171,7 @@ export default function PlanComptablePage() {
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
         <div className="flex-1 text-sm text-muted-foreground">
-          {table.getFilteredSelectedRowModel().rows.length} of{" "}
-          {table.getFilteredRowModel().rows.length} lignes(s) selected.
+          {table.getFilteredRowModel().rows.length} ligne(s).
         </div>
         <div className="space-x-2">
           <Button
@@ -189,6 +190,18 @@ export default function PlanComptablePage() {
           >
             Next
           </Button>
+          <select
+            value={table.getState().pagination.pageSize}
+            onChange={(e) => {
+              table.setPageSize(Number(e.target.value));
+            }}
+          >
+            {[100, 200, 500, 1000].map((pageSize) => (
+              <option key={pageSize} value={pageSize}>
+                Montrer {pageSize}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
     </div>
