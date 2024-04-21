@@ -1,4 +1,4 @@
-"use client";
+//@ts-nocheck
 
 import Link from "next/link";
 
@@ -12,12 +12,13 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { signIn, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { signIn } from "@/auth.ts";
 
-export default function LoginForm() {
+export default async function LoginForm() {
   // const { data, status } = useSession();
-  const router = useRouter();
+  // const router = useRouter();
+
+  // console.log(data, status);
 
   // if (status === "loading") {
   //   return <div>Chargement...</div>;
@@ -27,47 +28,57 @@ export default function LoginForm() {
   // }
 
   return (
-    <Card className="mx-auto max-w-sm">
-      <CardHeader>
-        <CardTitle className="text-2xl">Connexion</CardTitle>
-        <CardDescription>
-          Entrez votre email pour vous connecter à votre compte
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div className="grid gap-4">
-          <div className="grid gap-2">
-            <Label htmlFor="email">Email</Label>
-            <Input
-              id="email"
-              type="email"
-              placeholder="m@example.com"
-              required
-            />
-          </div>
-          <div className="grid gap-2">
-            <div className="flex items-center">
-              <Label htmlFor="password">Mot de passe</Label>
-              <Link href="#" className="ml-auto inline-block text-sm underline">
-                Mot de passe oublié ?
-              </Link>
+    <form
+      action={async () => {
+        "use server";
+        await signIn("google");
+      }}
+    >
+      <Card className="mx-auto max-w-sm">
+        <CardHeader>
+          <CardTitle className="text-2xl">Connexion</CardTitle>
+          <CardDescription>
+            Entrez votre email pour vous connecter à votre compte
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="grid gap-4">
+            <div className="grid gap-2">
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="m@example.com"
+                required
+              />
             </div>
-            <Input id="password" type="password" required />
+            <div className="grid gap-2">
+              <div className="flex items-center">
+                <Label htmlFor="password">Mot de passe</Label>
+                <Link
+                  href="#"
+                  className="ml-auto inline-block text-sm underline"
+                >
+                  Mot de passe oublié ?
+                </Link>
+              </div>
+              <Input id="password" type="password" required />
+            </div>
+            <Button type="submit" className="w-full">
+              Se connecter
+            </Button>
+            <Button variant="outline" className="w-full" type="submit">
+              Se connecter avec Google
+            </Button>
           </div>
-          <Button type="submit" className="w-full">
-            Se connecter
-          </Button>
-          <Button variant="outline" className="w-full">
-            Se connecter avec Google
-          </Button>
-        </div>
-        <div className="mt-4 text-center text-sm">
-          Pas de compte?{" "}
-          <Link href="/signup" className="underline">
-            S&apos;inscrire
-          </Link>
-        </div>
-      </CardContent>
-    </Card>
+          <div className="mt-4 text-center text-sm">
+            Pas de compte?{" "}
+            <Link href="/signup" className="underline">
+              S&apos;inscrire
+            </Link>
+          </div>
+        </CardContent>
+      </Card>
+    </form>
   );
 }

@@ -1,5 +1,4 @@
 //@ts-nocheck
-"use client";
 
 import Link from "next/link";
 
@@ -13,7 +12,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { signOut } from "next-auth/react";
+import { signIn } from "@/auth";
 
 export default function SignupForm() {
   return (
@@ -42,9 +41,16 @@ export default function SignupForm() {
           <Button type="submit" className="w-full">
             Créer un compte
           </Button>
-          <Button variant="outline" className="w-full">
-            S&apos;inscrire avec Google
-          </Button>
+          <form
+            action={async () => {
+              "use server";
+              await signIn("google");
+            }}
+          >
+            <Button variant="outline" className="w-full">
+              S&apos;inscrire avec Google
+            </Button>
+          </form>
         </div>
         <div className="mt-4 text-center text-sm">
           Avez-vous déjà un compte?{" "}

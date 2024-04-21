@@ -39,6 +39,8 @@ import {
 } from "lucide-react";
 import { SidebarRoutes } from "./sidebar-routes";
 import { signOut } from "next-auth/react";
+import { auth } from "@/auth";
+import UserName from "./user-name";
 
 const PageHeader = () => {
   return (
@@ -87,6 +89,7 @@ const PageHeader = () => {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="secondary" size="icon" className="rounded-full">
+            {/* <UserName /> */}
             <CircleUser className="h-5 w-5" />
             <span className="sr-only">Toggle user menu</span>
           </Button>
@@ -97,7 +100,9 @@ const PageHeader = () => {
           <DropdownMenuItem>Settings</DropdownMenuItem>
           <DropdownMenuItem>Support</DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={signOut}>Logout</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => signOut()}>
+            Se déconnecter
+          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
       <ModeToggle />
